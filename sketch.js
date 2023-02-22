@@ -13,6 +13,7 @@ var botao1;
 var botao2;
 var ball;
 var shelf, shelf2, shelf3, shelf4;
+var win
 
 function setup() {
   createCanvas(500, 400);
@@ -27,6 +28,7 @@ function setup() {
   right = new Ground(490, 200, 20, 400);
   left = new Ground(10, 200, 20, 400);
   top_wall = new Ground(200, 10, 560, 20);
+
 
   botao1 = createImg("up.png");
   botao1.position(150, 100);
@@ -46,8 +48,13 @@ function setup() {
   World.add(world, ball);
   rectMode(CENTER);
   ellipseMode(RADIUS);
-}
 
+win = createSprite(350, 380, 100, 10)
+win.visible = true;
+win.shapeColor = "red"
+
+
+}
 function draw() {
   background(51);
   ground.show();
@@ -60,6 +67,11 @@ function draw() {
   shelf4.show();
   Engine.update(engine);
   ellipse(ball.position.x, ball.position.y, 30);
+  drawSprites();
+if (ball.isTouching(win)){
+  ball.remove;
+  text("Parabens", 250, 200);
+}
 }
 
 function upForce() {
