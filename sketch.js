@@ -55,6 +55,20 @@ win.shapeColor = "red"
 
 
 }
+function collide(ball,win){
+  if(ball!=null){
+    var d = dist(ball.position.x,ball.position.y,win.position.x,win.position.y);
+    if(d<=80){
+      World.remove(engine.world,ball);
+      ball = null
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+}
+
 function draw() {
   background(51);
   ground.show();
@@ -68,10 +82,10 @@ function draw() {
   Engine.update(engine);
   ellipse(ball.position.x, ball.position.y, 30);
   drawSprites();
-if (ball.isTouching(win)){
-  ball.remove;
-  text("Parabens", 250, 200);
-}
+  if(collide(ball,win)==true){
+    ball.shapeColor("#008000")
+    Text("")
+  }
 }
 
 function upForce() {
